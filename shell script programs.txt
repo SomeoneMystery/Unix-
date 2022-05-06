@@ -1,0 +1,164 @@
+#Profit_Loss
+
+echo "Enter cp"
+read cp
+echo "Enter sp"
+read sp
+if [[ $sp -gt $cp ]]
+then
+    echo "Profit = $(( $sp-$cp ))"
+else
+    echo "Loss = $(( $cp-$sp ))"
+fi
+---------------------------------------------------------------------------------------------------------------------
+#Area of triangle
+
+echo "Enter a"
+read a 
+echo "Enter b"
+read b
+echo "Enter c"
+read c
+# area=`echo "scale=2; ( $b * $h )/2" | bc`
+s=`echo "scale=2; ($a+$b+$c)/2" | bc`
+area=`echo "scale=2; sqrt($s*($s-$a)*($s-$b)*($s-$c))" | bc`
+echo "Area of triangle = $area"
+---------------------------------------------------------------------------------------------------------------------
+#Volume of cube
+
+echo "Enter a"
+read a
+volume=`echo "scale=2; $a^3" | bc`
+echo "Volume = $volume"
+---------------------------------------------------------------------------------------------------------------------
+#Factorial
+
+echo "Enter a number"
+read n
+f=1
+while [ $n -gt 1 ]
+do
+    f=$(( f*n ))
+    n=$(( n-1 ))
+done
+echo "$f"
+---------------------------------------------------------------------------------------------------------------------
+#Calculator
+
+echo "Basic calculator"
+
+echo "Press 1 for add
+      Press 2 for subtract
+      Press 3 for multiply
+      Press 4 for division"
+
+echo "Enetr 2 numbers"
+read n1 n2
+
+echo "Enter option"
+read op
+
+case $op in
+    1 )
+        echo $(( n1+n2 )) ;;
+    2 )
+        echo $(( n1-n2 )) ;;
+    3 )
+        echo $(( n1*n2 )) ;;
+    4 )
+        echo "scale=2; ( $n1 / $n2 )" | bc ;;
+    * )
+        echo "Invalid" ;;
+esac
+f=1
+while [ $n -gt 1 ]
+do
+    f=$(( f*n ))
+    n=$(( n-1 ))
+done
+echo $f
+---------------------------------------------------------------------------------------------------------------------
+#Marks
+
+echo "Enter marks in six subjects"
+read m1 m2 m3 m4 m5 m6
+total=$(( m1+m2+m3+m4+m5+m6 ))
+perc=`echo "scale=2; $(( (total*100)/300 ))" | bc`
+echo "Total = $total Percentage = $perc"
+---------------------------------------------------------------------------------------------------------------------
+#Array reverse
+
+read -a greetings
+# echo "${greetings[0]} ${greetings[1]} ${greetings[2]} ${greetings[3]}"
+length=`echo "${#greetings[@]}"`
+i=0
+while [ $i -lt $length ]
+do
+    echo "${greetings[$i]}"
+    i=$(( $i+1 ))
+done
+
+i=${#greetings[@]}
+while [ $i -ge 0 ]
+do
+    echo "${greetings[$i]}"
+    i=$(( i-1 ))
+done
+---------------------------------------------------------------------------------------------------------------------
+#Months and Week
+
+weeks=("Monday" "Tuesday" "Wednesday" "Thursday" "Friday" "Saturday" "Sunday")
+months=("Jan" "Feb" "Mar" "Apr" "May" "Jun" "Jul" "Aug" "Sept" "Oct" "Nov" "Dec")
+echo "Enter number for weeks"
+read n
+n=$(( n-1 ))
+if [ $n -lt ${#weeks[@]} ]
+then 
+    echo "${weeks[$n]}"
+else
+    echo "Out of range"
+fi
+
+echo "Enter number for months"
+read n1
+n1=$(( n1-1 ))
+
+if [ $n1 -lt ${#months[@]} ]
+then
+    echo "${months[$n1]}"
+else
+    echo "Out of range"
+fi
+---------------------------------------------------------------------------------------------------------------------
+#even/odd
+
+for i in {1..99}
+do
+    if [ $(( i%2 )) -eq 0 ]
+    then 
+        echo $i
+    fi
+done
+---------------------------------------------------------------------------------------------------------------------
+#fibonacci
+
+echo "Enter a number"
+read n
+a=0
+b=1
+for(( i=0; i<n; i++ ))
+do
+    echo -n "$a "
+    fn=$(( a+b ))
+    a=$b
+    b=$fn
+done
+---------------------------------------------------------------------------------------------------------------------
+# y = x^3 + 3x^2 – 5x + 8
+echo "Enter a number: "
+read x
+xcube=$(( $x ** 3 ))
+xsquare=$(( $x ** 2 ))
+echo "y = x^3 + 3x^2 – 5x + 8"
+y=$(( xcube + 3 * xsquare - 5 * x + 8 ))
+echo "if x = $x then y = $y"
